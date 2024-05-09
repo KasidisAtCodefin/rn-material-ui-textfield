@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import { View, TextInput, Animated, StyleSheet, Platform } from 'react-native';
 import {
-  TextPropTypes,
+  View,
+  Text,
+  TextInput,
+  Animated,
+  StyleSheet,
+  Platform,
   ViewPropTypes,
-  TextInputPropTypes,
-} from 'deprecated-react-native-prop-types';
+} from 'react-native';
 
 import Line from '../line';
 import Label from '../label';
@@ -14,7 +17,6 @@ import Helper from '../helper';
 import Counter from '../counter';
 
 import styles from './styles';
-
 function startAnimation(animation, options, callback) {
   Animated.timing(animation, options).start(callback);
 }
@@ -61,7 +63,7 @@ export default class TextField extends PureComponent {
   };
 
   static propTypes = {
-    ...TextInputPropTypes,
+    ...TextInput.propTypes,
 
     animationDuration: PropTypes.number,
 
@@ -79,9 +81,9 @@ export default class TextField extends PureComponent {
 
     labelOffset: Label.propTypes.offset,
 
-    labelTextStyle: TextPropTypes.style,
-    titleTextStyle: TextPropTypes.style,
-    affixTextStyle: TextPropTypes.style,
+    labelTextStyle: Text.propTypes.style,
+    titleTextStyle: Text.propTypes.style,
+    affixTextStyle: Text.propTypes.style,
 
     tintColor: PropTypes.string,
     textColor: PropTypes.string,
@@ -459,7 +461,7 @@ static getDerivedStateFromProps({ error, value }, state) {
   inputProps() {
     let store = {};
 
-    for (let key in TextInputPropTypes) {
+    for (let key in TextInput.propTypes) {
       if (key === 'defaultValue') {
         continue;
       }
